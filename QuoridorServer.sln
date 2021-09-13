@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuoridorServer", "QuoridorServer\QuoridorServer.csproj", "{8F47ABA1-42B4-4CAA-A3E8-17C3AF857899}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuoridorServerBL", "QuoridorServerBL\QuoridorServerBL.csproj", "{714CD452-79C0-4BD3-A74F-C67E66D43F6F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F47ABA1-42B4-4CAA-A3E8-17C3AF857899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F47ABA1-42B4-4CAA-A3E8-17C3AF857899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F47ABA1-42B4-4CAA-A3E8-17C3AF857899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F47ABA1-42B4-4CAA-A3E8-17C3AF857899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{714CD452-79C0-4BD3-A74F-C67E66D43F6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{714CD452-79C0-4BD3-A74F-C67E66D43F6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{714CD452-79C0-4BD3-A74F-C67E66D43F6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{714CD452-79C0-4BD3-A74F-C67E66D43F6F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6887C06D-68C6-47AE-B529-02C4D81E11A4}
+	EndGlobalSection
+EndGlobal
