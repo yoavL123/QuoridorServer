@@ -28,8 +28,8 @@ GO
 Create Table Games (
 GameID int identity primary key,
 GameDate datetime not null, -- the date of the game
-Player1ID int foreign key references Players(PlayerID),
-Player2ID int foreign key references Players(PlayerID),
+Player1ID int not null foreign key references Players(PlayerID),
+Player2ID int not null foreign key references Players(PlayerID),
 )
 GO
 
@@ -52,7 +52,7 @@ GO
 -- responsible for including the ratinng changes for each player
 Create Table RatingChanges(
 RatingChangeID int identity primary key,
-RatingChangePlayerID int foreign key references Players(PlayerID),
+RatingChangePlayerID int not null foreign key references Players(PlayerID),
 RatingChangeDate datetime not null, -- the date of the rating change
 AlteredRating int not null, -- the rating after this game
 )

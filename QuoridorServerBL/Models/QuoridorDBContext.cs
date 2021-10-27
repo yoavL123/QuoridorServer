@@ -48,11 +48,13 @@ namespace QuoridorServerBL.Models
                 entity.HasOne(d => d.Player1)
                     .WithMany(p => p.GamePlayer1s)
                     .HasForeignKey(d => d.Player1Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Games__Player1ID__276EDEB3");
 
                 entity.HasOne(d => d.Player2)
                     .WithMany(p => p.GamePlayer2s)
                     .HasForeignKey(d => d.Player2Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Games__Player2ID__286302EC");
             });
 
@@ -125,6 +127,7 @@ namespace QuoridorServerBL.Models
                 entity.HasOne(d => d.RatingChangePlayer)
                     .WithMany(p => p.RatingChanges)
                     .HasForeignKey(d => d.RatingChangePlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__RatingCha__Ratin__2F10007B");
             });
 
