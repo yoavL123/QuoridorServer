@@ -1,0 +1,1 @@
+﻿scaffold-dbcontext "Server=localhost\sqlexpress;Database=QuoridorDB;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models –force
