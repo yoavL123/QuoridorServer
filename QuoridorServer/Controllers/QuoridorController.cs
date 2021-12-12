@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 
 using QuoridorServerBL.Models;
 using System.IO;
-
+using System.Net.Http;
 
 namespace QuoridorServer.Controllers
 {
@@ -32,20 +33,35 @@ namespace QuoridorServer.Controllers
 
         [Route("SignUpPlayer")]
         [HttpPost]
-        public Player SignUpPlayer([FromBody] Player player)
+        public Player SignUpPlayer([FromBody] Player newPlayer) // gets a json string of a player
         {
-            //If contact is null the request is bad
-            if (player == null)
+            if (newPlayer == null)
             {
                 Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
                 return null;
             }
 
-            Player newPlayer = HttpContext.Session.GetObject<Player>("theUser");
-            //Check if user logged in and its ID is the same as the contact user ID
-            if (newPlayer != null)
+            //Player  = HttpContext.Session.GetObject<User>("theUser");
+            //Player newPlayer = JsonSerializer.Deserialize<Player>(jsonPlayer);
+            //If contact is null the request is bad
+            /*
+            if ( newPlayer == null)
             {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                return null;
+            }
+            */
 
+            //Player newPlayer = HttpContext.Session.GetObject<Player>("newUser"); // session of the current signed in user
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            context.AddPlayer(newPlayer);
+            return newPlayer;
+
+            //Check if user logged in and its ID is the same as the contact user ID
+            //if (newPlayer != null)
+           // {
+             //   newPlayer.
+                /*
                 //update contact to the DB by marking all entities that should be modified or added
                 if (contact.ContactId > 0)
                 {
@@ -78,20 +94,24 @@ namespace QuoridorServer.Controllers
 
                 //return the contact with its new ID if that was a new contact
                 return contact;
-            }
+                */
+           /* }
             else
             {
                 Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
                 return null;
             }
+           */
         }
 
-        [Route("GetPhoneTypes")]
+        /*
+         * [Route("GetPhoneTypes")]
         [HttpGet]
         public List<PhoneType> GetPhoneTypes()
         {
             return context.PhoneTypes.ToList();
         }
+        */
 
     }
 

@@ -21,5 +21,13 @@ namespace QuoridorServerBL.Models
             return pQuery;
         }
 
+
+        public void AddPlayer(Player p)
+        {
+            QuoridorDBContext bl = new QuoridorDBContext();
+            bl.Players.Add(p);
+            bl.SaveChanges();
+        }
+
     }
 }
