@@ -40,70 +40,31 @@ namespace QuoridorServer.Controllers
                 Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
                 return null;
             }
-
-            //Player  = HttpContext.Session.GetObject<User>("theUser");
-            //Player newPlayer = JsonSerializer.Deserialize<Player>(jsonPlayer);
-            //If contact is null the request is bad
-            /*
-            if ( newPlayer == null)
-            {
-                Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
-                return null;
-            }
-            */
-
-            //Player newPlayer = HttpContext.Session.GetObject<Player>("newUser"); // session of the current signed in user
             Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
             context.AddPlayer(newPlayer);
             return newPlayer;
-
-            //Check if user logged in and its ID is the same as the contact user ID
-            //if (newPlayer != null)
-           // {
-             //   newPlayer.
-                /*
-                //update contact to the DB by marking all entities that should be modified or added
-                if (contact.ContactId > 0)
-                {
-                    context.Entry(contact).State = EntityState.Modified;
-                }
-                else
-                {
-                    context.Entry(contact).State = EntityState.Added;
-                }
-
-                foreach (ContactPhone cp in contact.ContactPhones)
-                {
-                    if (cp.PhoneId > 0)
-                    {
-                        context.Entry(cp).State = EntityState.Modified;
-                    }
-                    else
-                    {
-                        context.Entry(cp).State = EntityState.Added;
-                    }
-                }
-                //Save change into the db
-                context.SaveChanges();
+        }
 
 
-                //Now check if an image exist for the contact (photo). If not, set the default image!
-                var sourcePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", DEFAULT_PHOTO);
-                var targetPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", $"{contact.ContactId}.jpg");
-                System.IO.File.Copy(sourcePath, targetPath);
+        [Route("SignInPlayer")]
+        [HttpGet]
+        public Player SignInPlayer(string userName, string pass)
+        {
+            Player player = context.SignIn(userName, pass);
 
-                //return the contact with its new ID if that was a new contact
-                return contact;
-                */
-           /* }
+            //Check user name and password
+            if (player != null)
+            {
+                HttpContext.Session.SetObject("CurPlayer", player);
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return player;
+            }
             else
             {
                 Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
                 return null;
             }
-           */
         }
-
         /*
          * [Route("GetPhoneTypes")]
         [HttpGet]
