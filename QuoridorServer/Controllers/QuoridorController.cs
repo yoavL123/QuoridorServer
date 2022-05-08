@@ -65,6 +65,43 @@ namespace QuoridorServer.Controllers
                 return null;
             }
         }
+
+        [Route("UpdateRatingChange")]
+        [HttpPost]
+        // from body denotes that we get the rating change as a json parameter and not as a parameter in the http line
+        public void UpdateRatingChange([FromBody] RatingChange ratingChange) 
+        {
+            if (ratingChange == null)
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                return;
+            }
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            context.AddRatingChange(ratingChange);
+        }
+
+        
+
+        [Route("GetLastRatingChange")]
+        [HttpGet]
+        public RatingChange GetLastRatingChange(int playerId)
+        {
+            RatingChange ratingChange = context.GetLastRatingChange(playerId);
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK; // it's ok even if we didn't find a last rating change
+            ratingChange.RatingChangePlayer = context.GetPlayer(playerId);
+            return ratingChange; // will return null if doesn't exist
+
+        }
+
+
+        [Route("GetRatingChanges")]
+        [HttpGet]
+        public List<RatingChange> GetRatingChanges(int playerId)
+        {
+            List<RatingChange> ratingChanges = context.GetRatingChanges(playerId);
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return ratingChanges;
+        }
         /*
          * [Route("GetPhoneTypes")]
         [HttpGet]

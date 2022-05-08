@@ -29,5 +29,39 @@ namespace QuoridorServerBL.Models
             bl.SaveChanges();
         }
 
+        public void AddRatingChange(RatingChange ratingChange)
+        {
+            QuoridorDBContext bl = new QuoridorDBContext();
+            bl.RatingChanges.Add(ratingChange);
+            bl.SaveChanges();
+
+        }
+
+
+        public Player GetPlayer(int playerId)
+        {
+            var query = from p in Players where p.PlayerId == playerId select p;
+            return query.FirstOrDefault();
+        }
+
+        public RatingChange GetLastRatingChange(int playerId)
+        {
+            var query = (from r in RatingChanges orderby r.RatingChangeDate ascending where (r.RatingChangePlayerId == playerId) select r);
+            //query.OrderBy<RatingChangeDate>
+            RatingChange last = query.LastOrDefault();
+            return last;
+        }
+
+        public List<RatingChange> GetRatingChanges(int playerId)
+        {
+            var query = (from r in RatingChanges orderby r.RatingChangeDate ascending where (r.RatingChangePlayerId == playerId) select r);
+            List<RatingChange> ratingList = new List<RatingChange>();
+            foreach(RatingChange r in query)
+            {
+                ratingList.Add(r);
+            }
+            return ratingList;
+        }
+
     }
 }
