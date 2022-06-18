@@ -87,6 +87,12 @@ namespace QuoridorServer.Controllers
         public RatingChange GetLastRatingChange(int playerId)
         {
             RatingChange ratingChange = context.GetLastRatingChange(playerId);
+            if(ratingChange == null)
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.NoContent;
+                
+                return null;
+            }
             Response.StatusCode = (int)System.Net.HttpStatusCode.OK; // it's ok even if we didn't find a last rating change
             //ratingChange.RatingChangePlayer = context.GetPlayer(playerId);
             return ratingChange; // will return null if doesn't exist
