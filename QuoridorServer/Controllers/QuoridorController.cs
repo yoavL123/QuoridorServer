@@ -80,7 +80,22 @@ namespace QuoridorServer.Controllers
             context.AddRatingChange(ratingChange);
         }
 
-        
+        [Route("GetPlayer")]
+        [HttpGet]
+        public Player GetPlayer(string userName)
+        {
+            Player player = context.GetPlayer(userName);
+            if (player == null)
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.NoContent;
+
+                return null;
+            }
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK; // it's ok even if we didn't find a last rating change
+            //ratingChange.RatingChangePlayer = context.GetPlayer(playerId);
+            return player; // will return null if doesn't exist
+
+        }
 
         [Route("GetLastRatingChange")]
         [HttpGet]

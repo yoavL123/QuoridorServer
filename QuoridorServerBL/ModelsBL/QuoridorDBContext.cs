@@ -29,6 +29,13 @@ namespace QuoridorServerBL.Models
             bl.SaveChanges();
         }
 
+        public Player GetPlayer(string userName)
+        {
+            var query = from p in Players where (p.UserName == userName) select p;
+            Player pQuery = query.FirstOrDefault();
+            return pQuery;
+        }
+
         public void AddRatingChange(RatingChange ratingChange)
         {
             QuoridorDBContext bl = new QuoridorDBContext();
